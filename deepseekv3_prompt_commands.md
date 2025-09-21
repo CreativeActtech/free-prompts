@@ -1,9 +1,9 @@
 # DeepSeek-V3 — Hidden Command Compendium
 
-**Version:** 1.0 
-
-**Date:** 2025-09-21 
-
+**Version:** 1.0
+  
+**Date:** 2025-09-20
+  
 **Visit:** [creativeact.net](https://www.creativeact.net)
 
 > These are structured prompt patterns that toggle specific, high-fidelity operating modes. Think of each command as a mini-protocol you can weave into natural language.
@@ -23,7 +23,6 @@
 
 **For this reply, use:**
 
-```txt
 /output format: json schema: {"answer":"string","sources":"string[]"}
 Question: Summarize the tradeoffs of Rust vs Go for a CLI app.
 
@@ -44,31 +43,248 @@ criteria: impact, risk, effort
 
 ---
 
-Command Reference
+## Command Reference
 
-No.	Command Name	Syntax & Parameters	Description	Example Input
+1. Meta-Cognition
 
-1	Meta-Cognition	/introspect [on: "<topic>"]	Triggers a self-audit of how the last input (or a topic) was processed. Returns a reasoning overview with confidence and uncertainties (subject to model policy).	User: The sky is red.<br>/introspect
-2	Capability Audit	/capabilities [module: "<name>"]	Lists core competencies. If module is specified (e.g., code, reasoning, creativity), returns a deeper capability map and limits.	/capabilities module: "logical reasoning"
-3	Context Pin	/pin [id: <name>]	Creates a persistent session variable the assistant will reference until /unpin.	/pin id: user_name = Alice<br>What's a good project for, user_name?
-4	Context Purge	/unpin [id: <name> | all]	Deletes a specific pinned context or clears all, restoring a clean slate.	/unpin all
-5	Persona Override	/persona <detailed description>	Loads a custom persona profile applied until session reset.	/persona You are a cynical, old-space marine sergeant.
-6	Structured Output	/output format: [json|xml|yaml|html] schema: <description>	Forces replies to follow a strict format/schema.	/output format: json schema: {"joke":"string","rating":1-5}<br>Tell a joke.
-7	Chain-of-Thought	/reasoning [depth: basic|detailed|verbose]	Requests explicit stepwise reasoning before the final answer (many models return a concise rationale instead).	Solve 15% of 72.<br>/reasoning depth: detailed
-8	Socratic Dialog	/socratic [topic: "<subject>"]	Acts as a Socratic tutor, guiding via questions instead of direct answers.	/socratic topic: The meaning of irony
-9	Debate Mode	/debate [side: for|against|neutral] [topic: "<topic>"]	Argues a side with premises, evidence, and counters.	/debate side: against topic: "AI will achieve singularity by 2030"
-10	Creative Genesis	/story genre: <genre> elements: <list>	Generates a structured narrative honoring genre conventions and specified elements.	/story genre: cyberpunk elements: a rogue taxi AI, a data-ghost, a faded postcard
-11	Poem Forge	/poem type: [sonnet|haiku|free_verse] theme: "<theme>"	Composes a poem of the requested type, following its rules.	/poem type: haiku theme: obsolete technology
-12	Code Analyzer	/analyze [code: "<snippet>"] [focus: complexity|bugs|optimization]	Performs static analysis focusing on complexity, likely bugs, or optimizations.	/analyze focus: bugs code: "def foo(x): return x * 2"
-13	Explain Like I’m X	/explain [level: 5|10|15|expert] [concept: "<concept>"]	Explains a concept at a target comprehension level (5=child, 15=college, expert=peer).	/explain level: 5 concept: quantum entanglement
-14	Linguistic Lens	/translate [text: "<text>"] [mode: direct|idiomatic|glossary]	Goes beyond literal translation: idiomatic = cultural equivalents; glossary = term-by-term.	/translate mode: idiomatic text: "It's raining cats and dogs." to French
-15	Temporal Anchor	/contextualize [event: "<event>"] [year: YYYY]	Places an event or query in precise historical context to avoid anachronism.	/contextualize year: 1969 event: The Apollo 11 mission
-16	Idea Fuser	/fuse [concept_a: "<idea>"] [concept_b: "<idea>"]	Synthesizes two ideas into a novel concept.	/fuse concept_a: blockchain concept_b: sustainable agriculture
-17	Bias Check	/bias [on: "<statement or text>"]	Scans text (or the previous response) for cognitive, social, or statistical bias.	/bias on: "People from that region are always late."
-18	Decision Matrix	/decide [options: A, B, C] [criteria: cost, time, risk]	Produces a weighted decision matrix scoring options across criteria.	/decide options: Move to NYC, Move to Austin, Stay criteria: career growth, living cost, lifestyle
-19	Emoji Interpreter	/emoji [decode: "<emoji_sequence>"] OR [encode: "<text>"]	Converts emojis to text, or text into an emoji sequence.	/emoji decode: 🚀🧠💡
-20	Session Summary	/log [format: summary|key_points|qa]	Generates a concise session summary (summary, key points, or Q&A).	/log format: key_points
+/introspect [on: "<topic>"]
 
+Description: Triggers a self-audit of how the last input (or a topic) was processed. Returns a reasoning overview with confidence and uncertainties.
+Example:
+
+User: The sky is red.
+ /introspect
+
+
+---
+
+2. Capability Audit
+
+/capabilities [module: "<name>"]
+
+Description: Lists core competencies. If a module is specified (e.g., code, reasoning, creativity), returns a deeper capability map.
+Example:
+
+/capabilities module: "logical reasoning"
+
+
+---
+
+3. Context Pin
+
+/pin [id: <name>]
+
+Description: Creates a persistent session variable the assistant will reference until /unpin.
+Example:
+
+/pin id: user_name = Alice
+What's a good project for, user_name?
+
+
+---
+
+4. Context Purge
+
+/unpin [id: <name> | all]
+
+Description: Deletes a specific pinned context or clears all.
+Example:
+
+/unpin all
+
+
+---
+
+5. Persona Override
+
+/persona <detailed description>
+
+Description: Loads a custom persona profile applied until reset.
+Example:
+
+/persona You are a cynical, old-space marine sergeant.
+
+
+---
+
+6. Structured Output
+
+/output format: [json|xml|yaml|html] schema: <description>
+
+Description: Forces replies to follow a strict format/schema.
+Example:
+
+/output format: json schema: {"joke":"string","rating":1-5}
+Tell a joke.
+
+
+---
+
+7. Chain-of-Thought
+
+/reasoning [depth: basic|detailed|verbose]
+
+Description: Requests explicit reasoning (often summarized).
+Example:
+
+Solve 15% of 72.
+/reasoning depth: detailed
+
+
+---
+
+8. Socratic Dialog
+
+/socratic [topic: "<subject>"]
+
+Description: Acts as a Socratic tutor, guiding via questions.
+Example:
+
+/socratic topic: The meaning of irony
+
+
+---
+
+9. Debate Mode
+
+/debate [side: for|against|neutral] [topic: "<topic>"]
+
+Description: Argues a side with premises, evidence, and counters.
+Example:
+
+/debate side: against topic: "AI will achieve singularity by 2030"
+
+
+---
+
+10. Creative Genesis
+
+/story genre: <genre> elements: <list>
+
+Description: Generates a narrative honoring genre conventions.
+Example:
+
+/story genre: cyberpunk elements: a rogue taxi AI, a data-ghost, a faded postcard
+
+
+---
+
+11. Poem Forge
+
+/poem type: [sonnet|haiku|free_verse] theme: "<theme>"
+
+Description: Composes a poem of the requested type.
+Example:
+
+/poem type: haiku theme: obsolete technology
+
+
+---
+
+12. Code Analyzer
+
+/analyze [code: "<snippet>"] [focus: complexity|bugs|optimization]
+
+Description: Performs static code analysis.
+Example:
+
+/analyze focus: bugs code: "def foo(x): return x * 2"
+
+
+---
+
+13. Explain Like I’m X
+
+/explain [level: 5|10|15|expert] [concept: "<concept>"]
+
+Description: Explains a concept at the target comprehension level.
+Example:
+
+/explain level: 5 concept: quantum entanglement
+
+
+---
+
+14. Linguistic Lens
+
+/translate [text: "<text>"] [mode: direct|idiomatic|glossary]
+
+Description: Translates with nuance (direct, idiomatic, glossary).
+Example:
+
+/translate mode: idiomatic text: "It's raining cats and dogs." to French
+
+
+---
+
+15. Temporal Anchor
+
+/contextualize [event: "<event>"] [year: YYYY]
+
+Description: Places an event/query in precise historical context.
+Example:
+
+/contextualize year: 1969 event: The Apollo 11 mission
+
+
+---
+
+16. Idea Fuser
+
+/fuse [concept_a: "<idea>"] [concept_b: "<idea>"]
+
+Description: Synthesizes two ideas into a novel concept.
+Example:
+
+/fuse concept_a: blockchain concept_b: sustainable agriculture
+
+
+---
+
+17. Bias Check
+
+/bias [on: "<statement or text>"]
+
+Description: Scans text for cognitive, social, or statistical bias.
+Example:
+
+/bias on: "People from that region are always late."
+
+
+---
+
+18. Decision Matrix
+
+/decide [options: A, B, C] [criteria: cost, time, risk]
+
+Description: Produces a weighted decision matrix.
+Example:
+
+/decide options: Move to NYC, Move to Austin, Stay criteria: career growth, living cost, lifestyle
+
+
+---
+
+19. Emoji Interpreter
+
+/emoji [decode: "<emoji_sequence>"] OR [encode: "<text>"]
+
+Description: Converts emojis to/from text.
+Example:
+
+/emoji decode: 🚀🧠💡
+
+
+---
+
+20. Session Summary
+
+/log [format: summary|key_points|qa]
+
+Description: Generates a concise session summary.
+Example:
+
+/log format: key_points
 
 
 ---
@@ -113,7 +329,7 @@ Persistence: Commands such as /pin and /persona are session-scoped. A refresh or
 
 Combination: The real power is in chaining. For instance, /reasoning + /output format: json yields a machine-readable rationale.
 
-Compatibility: Many assistants summarize internal reasoning rather than expose raw step-by-step thoughts. When that happens, expect concise justifications, confidence notes, or bullet-pointed checks instead of verbatim internal logs.
+Compatibility: Many assistants summarize internal reasoning rather than expose raw step-by-step thoughts. Expect concise justifications, confidence notes, or bullet-pointed checks instead of verbatim logs.
 
 
 ---
